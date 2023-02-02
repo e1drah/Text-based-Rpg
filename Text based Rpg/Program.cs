@@ -16,6 +16,8 @@ namespace Text_based_Rpg
             player.y = 1;
             player.playerCharacter = "@";
 
+            bool gameOver = false;
+
             MapClass map = new MapClass();
 
             EnemyClass goblin = new EnemyClass(7,7,'G');
@@ -23,16 +25,20 @@ namespace Text_based_Rpg
             map.Draw();
             player.Draw();
             goblin.Draw();
-            while(true)
+            while(gameOver == false)
             {
                 map.Draw();
                 player.Draw();
                 goblin.Draw();
 
                 player.Update();
-                goblin.Update();
+                goblin.Update(player.x, player.y);
+                if (player.x == goblin.x && player.y == goblin.y)
+                {
+                    gameOver = true;
+                }
             }
-            //Console.ReadKey();
+            Console.ReadKey();
             
         }
     }

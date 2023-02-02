@@ -21,19 +21,19 @@ namespace Text_based_Rpg
             {'W','W','W','W','W','W','W','W','W'},
 
         };
-        public char[,] mapCells = new char[,] // dimensions defined by following data:
-        {
-            {'W','W','W','W','W','W','W','W','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','W','W','W','W','W','W','W','W'},
+        public char[,] mapCells = map; // dimensions defined by following data:
+        //{
+            //{'W','W','W','W','W','W','W','W','W'},
+            //{'W','F','F','F','F','F','F','F','W'},
+            //{'W','F','W','F','W','F','W','F','W'},
+            //{'W','F','F','F','F','F','F','F','W'},
+            //{'W','F','W','F','W','F','W','F','W'},
+            //{'W','F','F','F','F','F','F','F','W'},
+            //{'W','F','W','F','W','F','W','F','W'},
+            //{'W','F','F','F','F','F','F','F','W'},
+            //{'W','W','W','W','W','W','W','W','W'},
 
-        };
+        //};
 
         public void Draw()
         {

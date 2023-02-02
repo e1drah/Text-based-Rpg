@@ -9,5 +9,9 @@ namespace Text_based_Rpg
     internal class GameMangerClass
     {
         //Console.SetCursorPosition(0, 0);
+    public void RandomCompare(string)
+    {
+        
+    }
     }
 }

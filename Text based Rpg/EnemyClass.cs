@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Text_based_Rpg
 {
+    public class FileNotFoundException : System.IO.IOException { }
     internal class EnemyClass
     {
+        MapClass map = new MapClass();
         public int x;
         public int y;
+
+        private int n;
         public char icon;
+        public int lastDirection;
         Random random = new Random();  
         public EnemyClass(int x, int y, char icon)
         {
@@ -21,48 +26,77 @@ namespace Text_based_Rpg
 
         PlayerClass player = new PlayerClass();
 
-        public void Update()
+        public void Update(int playerX, int playerY)
         {
-            int randomDirection = random.Next(0, 1);
+            n += 1;
+            int randomDirection = random.Next(0, 2);
+            System.IO.File.WriteAllText("EnemyDirectionLog.txt", "Enemy direction: " + randomDirection);
             bool hasEnemyMoved = false;
             while (hasEnemyMoved == false)
             {
 
                 if (randomDirection == 0)
                 {
-                    if (x < player.x)
+                    if (x < playerX)
                     {
                         x += 1;
                         hasEnemyMoved = true;
+                        lastDirection = 4;
                     }
-                    if (x > player.x)
+                    else if (x > playerX)
                     {
                         x -= 1;
                         hasEnemyMoved = true;
+                        lastDirection = 3;
                     }
-                    if (x == player.x)
+                    else if (x == playerX)
                     {
                         randomDirection = 1;
                 }
                 }
-                if (randomDirection == 1)
+                else if (randomDirection == 1)
                 {
-                    if (y < player.y)
+                    if (y < playerY)
                     {
                         y += 1;
                         hasEnemyMoved = true;
+                        lastDirection = 2;
                     }
-                    if (y > player.y)
+                    else if (y > playerY)
                     {
                         y -= 1;
                         hasEnemyMoved = true;
+                        lastDirection = 1;
                     }
-                    if (y == player.y)
+                    else if (y == playerY)
                     {
                         randomDirection = 0;
                     }
                 }
 
+                if (x < 0) x = 0;
+                else if (x >= Console.WindowWidth) x -= 1;
+                else if (y < 0) y = 0;
+                else if (y >= Console.WindowWidth) y -= 1;
+                else if (map.mapCells[x, y] == 'W')
+                {
+                    switch (lastDirection)
+                    {
+                        case 1:
+                            y += 1;
+                            break;
+                        case 2:
+                            x += 1;
+                            break;
+                        case 3:
+                            y -= 1;
+                            break;
+                        case 4:
+                            x -= 1;
+                            break;
+
+                    }
+                }
             }
         }
         public void Draw()
