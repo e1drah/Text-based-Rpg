@@ -29,6 +29,7 @@ namespace Text_based_Rpg
             {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
 
         };
+        //provides readabel data to objects that need it. may not be nessary currently
         public char[,] mapCells = map; // dimensions defined by following data:
         //{
             //{'W','W','W','W','W','W','W','W','W'},
@@ -42,7 +43,7 @@ namespace Text_based_Rpg
             //{'W','W','W','W','W','W','W','W','W'},
 
         //};
-
+        //draws map to the screen
         public void DrawMap()
         {
             Console.SetCursorPosition(0, 0);
@@ -55,6 +56,7 @@ namespace Text_based_Rpg
                 Console.WriteLine();
             }
         }
+        // sets tile color based on what character is located there and there writes it to the screen
         static void MapColour(int v, int h)
         {
             char mapCell = map[v, h];
@@ -64,7 +66,8 @@ namespace Text_based_Rpg
                     Console.BackgroundColor = ConsoleColor.Gray;
                     break;
                 case 'F':
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
                 default:
                     break;

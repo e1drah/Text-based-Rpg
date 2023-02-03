@@ -11,7 +11,7 @@ namespace Text_based_Rpg
 
         static void Main(string[] args)
         {
-            PlayerClass player = new PlayerClass(1, 1, '@', "player", 7);
+            PlayerClass player = new PlayerClass(1, 1, '@', "player", 7, 2);
             //player.x = 1;
            // player.y = 1;
             //player.playerCharacter = "@";
@@ -24,11 +24,16 @@ namespace Text_based_Rpg
 
 
             map.DrawMap();
+            player.HUD();
+            enemies[0].HUD();
             player.Draw();
             enemies[0].Draw();
             while(gameOver == false)
             {
                 map.DrawMap();
+                player.HUD();
+                enemies[0].HUD();
+
                 enemies[0].Draw();
 
                 player.Draw();

@@ -29,13 +29,15 @@ namespace Text_based_Rpg
         }
 
         
-        // if enemy health is greater than 0 enemy will move else it moves the position to 0,0 and blanks out it's icon
+        // if enemy health is greater than 0 enemy will move else it moves the position to 0,0 and blanks out it's icon. will be changed once I find the time to implement lists
         public void Update(int playerX, int playerY)
         {
             n += 1;
             int randomDirection = random.Next(0, 2);
             System.IO.File.WriteAllText("EnemyDirectionLog.txt", "Enemy direction: " + randomDirection);
             bool hasEnemyMoved = false;
+            lastX = x;
+            lastY = y;
             if (hp > 0)
             {
             while (hasEnemyMoved == false)
@@ -109,12 +111,7 @@ namespace Text_based_Rpg
             {
                 x = 0;
                 y = 0;
-                icon = ' ';
             }
-        }
-        public void Check()
-        {
-            
         }
     }
 }

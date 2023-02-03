@@ -8,21 +8,25 @@ namespace Text_based_Rpg
 {
     internal class PlayerClass:GameMangerClass
     {
-        public PlayerClass(int x, int y, char icon, string name, int health)
+        public PlayerClass(int x, int y, char icon, string name, int health, int attack)
         {
             this.x = x; 
             this.y = y; 
             this.icon = icon;
             this.name = name;
+            this.attack = attack;
+
             hp = health;
         }
-
+        // moves the player based on key presses
         public void Update()
         {
             MapClass map = new MapClass();
             ConsoleKeyInfo playerInput;
             Char lastInput = 'B';
             bool validInput = false;
+            lastX = x;
+            lastY = y;
 
             playerInput = Console.ReadKey(true);
             while (validInput == false)
@@ -78,7 +82,9 @@ namespace Text_based_Rpg
                     }
                  }    
             }
-            Draw();
+            //floorColour(map.mapCells[x, y]);
+            //Draw();
+            //Console.ResetColor();
         }
     }
 }
