@@ -11,29 +11,42 @@ namespace Text_based_Rpg
 
         static void Main(string[] args)
         {
-            PlayerClass player = new PlayerClass();
-            player.x = 1;
-            player.y = 1;
-            player.playerCharacter = "@";
+            PlayerClass player = new PlayerClass(1, 1, '@', "player", 7);
+            //player.x = 1;
+           // player.y = 1;
+            //player.playerCharacter = "@";
 
             bool gameOver = false;
 
             MapClass map = new MapClass();
+            EnemyClass[] enemies = new EnemyClass[1];
+            enemies[0] = new EnemyClass(7, 7, 'G', "goblin", 1, 5, 1);
 
-            EnemyClass goblin = new EnemyClass(7,7,'G');
 
-            map.Draw();
+            map.DrawMap();
             player.Draw();
-            goblin.Draw();
+            enemies[0].Draw();
             while(gameOver == false)
             {
-                map.Draw();
-                player.Draw();
-                goblin.Draw();
+                map.DrawMap();
+                enemies[0].Draw();
 
+                player.Draw();
+                // enabled player movement
                 player.Update();
-                goblin.Update(player.x, player.y);
-                if (player.x == goblin.x && player.y == goblin.y)
+                // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies
+                if (player.Compare(player.x, player.y, enemies[0].x, enemies[0].y))
+                {
+                    enemies[0].Hurt(player.attack);
+                }
+                // Updates enemies position will be updated to a for loop eventully to inculde all potintal enemies
+                enemies[0].Update(player.x, player.y);
+                //
+                if (enemies[0].Compare(enemies[0].x, enemies[0].y, player.x, player.y))
+                {
+                    player.Hurt(enemies[0].attack);
+                }
+                if (player.hp == 0)
                 {
                     gameOver = true;
                 }

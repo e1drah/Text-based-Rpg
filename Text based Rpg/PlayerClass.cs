@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Text_based_Rpg
 {
-    internal class PlayerClass
+    internal class PlayerClass:GameMangerClass
     {
-        public string playerCharacter;
-        public int x;
-        public int y;
-        
+        public PlayerClass(int x, int y, char icon, string name, int health)
+        {
+            this.x = x; 
+            this.y = y; 
+            this.icon = icon;
+            this.name = name;
+            hp = health;
+        }
+
         public void Update()
         {
             MapClass map = new MapClass();
@@ -74,12 +79,6 @@ namespace Text_based_Rpg
                  }    
             }
             Draw();
-        }
-        public void Draw()
-        {
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(x, y);
-            Console.Write(playerCharacter);
         }
     }
 }

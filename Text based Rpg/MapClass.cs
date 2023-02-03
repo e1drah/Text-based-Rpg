@@ -10,15 +10,23 @@ namespace Text_based_Rpg
     {
         static char[,] map = new char[,] // dimensions defined by following data:
         {
-            {'W','W','W','W','W','W','W','W','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','W'},
-            {'W','W','W','W','W','W','W','W','W'},
+            {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
+            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
+            {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
 
         };
         public char[,] mapCells = map; // dimensions defined by following data:
@@ -35,7 +43,7 @@ namespace Text_based_Rpg
 
         //};
 
-        public void Draw()
+        public void DrawMap()
         {
             Console.SetCursorPosition(0, 0);
             for (int vertical = 0; vertical <= (map.GetLength(0) - 1); vertical++)
