@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_based_Rpg
 {
-    internal class PlayerClass:GameMangerClass
+    internal class PlayerClass:ObjectMangerClass
     {
         public PlayerClass(int x, int y, char icon, string name, int health, int attack)
         {
@@ -19,69 +19,16 @@ namespace Text_based_Rpg
             hp = health;
         }
         // moves the player based on key presses
-        public void Update()
+        public void Update(int direction)
         {
-            MapClass map = new MapClass();
-            ConsoleKeyInfo playerInput;
-            Char lastInput = 'B';
-            bool validInput = false;
             lastX = x;
             lastY = y;
 
-            playerInput = Console.ReadKey(true);
-            while (validInput == false)
-            {
-                switch (playerInput.Key)
-                {
-                    case ConsoleKey.W:
-                        y -= 1;
-                        lastInput = 'W';
-                        validInput = true;
-                        break;
-                    case ConsoleKey.S:
-                        lastInput = 'S';
-                        y += 1;
-                        validInput = true;
-                        break;
-                    case ConsoleKey.A:
-                        lastInput = 'A';
-                        x -= 1;
-                        validInput = true;
-                        break;
-                    case ConsoleKey.D:
-                        lastInput = 'D';
-                        x += 1;
-                        validInput = true;
-                        break;
-                    default:
-                        validInput = false;
-                        Console.WriteLine("Invalid input");
-                        break;
-                }
-                 if (x < 0) x = 0;
-                 if (x >= Console.WindowWidth) x -= 1;
-                 if (y < 0) y = 0;
-                 if (y >= Console.WindowWidth) y -= 1;
-                 if (map.mapCells[x,y] == 'W')
-                 {
-                    switch(lastInput)
-                    {
-                        case 'W':
-                            y += 1;
-                            break;
-                        case 'A':
-                            x += 1;
-                            break;
-                        case 'S':
-                            y -= 1;
-                            break;
-                        case 'D':
-                            x -= 1;
-                            break;
-
-                    }
-                 }    
-            }
+            if (direction == 1) y -= 1;
+            if (direction == 2) y += 1;
+            if (direction == 3) x -= 1;
+            if (direction == 4) x += 1;
+            BoundCheck();
             //floorColour(map.mapCells[x, y]);
             //Draw();
             //Console.ResetColor();

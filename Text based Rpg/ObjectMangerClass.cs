@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Text_based_Rpg
 {
 
-    internal class GameMangerClass:MapClass
+    internal class ObjectMangerClass:MapClass
     {
         public char icon;
 
@@ -21,9 +21,9 @@ namespace Text_based_Rpg
         public int lastY;
         //Console.SetCursorPosition(0, 0);
     // compares the positions of 2 objects and returns a true or false statement whether or not they match.
-    public bool Compare(int objectAX, int objectAY, int objectBX, int objectBY)
+    public bool Compare(ObjectMangerClass objectA)
     {
-        if (objectAX == objectBX && objectAY == objectBY)
+        if (x == objectA.x && y == objectA.y)
         {
             x = lastX;
             y = lastY;
@@ -51,7 +51,9 @@ namespace Text_based_Rpg
             Console.CursorVisible = false;
             Console.SetCursorPosition(x, y);
             Console.Write(icon);
-            
+            Console.ResetColor();
+
+
         }
         //prints the objects name and health to the screen
         public void HUD()
@@ -75,5 +77,20 @@ namespace Text_based_Rpg
                     break ;
             }
         }
+        public void BoundCheck()
+        {
+            if (x < 0) x = 0;
+            if (x >= Console.WindowWidth) x -= 1;
+            if (y < 0) y = 0;
+            if (y >= Console.WindowWidth) y -= 1;
+            if (mapCells[x, y] == 'W')
+            {
+                x = lastX;
+                y = lastY;
+            }
+
+        }
+
     }
 }
+

@@ -8,6 +8,10 @@ namespace Text_based_Rpg
 {
     internal class MapClass
     {
+        public class FileNotFoundException : System.IO.IOException { }
+
+        public static class File { }
+
         static char[,] map = new char[,] // dimensions defined by following data:
         {
             {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
@@ -69,11 +73,19 @@ namespace Text_based_Rpg
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     break;
+                case 'V':
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    break;
                 default:
                     break;
             }
             Console.Write(mapCell);
             Console.ResetColor();
+        }
+        static void MapUpdate()
+        {
+            string stringMap = System.IO.File.ReadAllText("Map1.txt");
+            map = stringMap.ToCharArray();
         }
     }
 }
