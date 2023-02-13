@@ -87,7 +87,7 @@ namespace Text_based_Rpg
                 else if (x >= Console.WindowWidth) x -= 1;
                 else if (y < 0) y = 0;
                 else if (y >= Console.WindowWidth) y -= 1;
-                else if (map.mapCells[x, y] == 'W')
+                else if (stringMap[y][x] == 'W')
                 {
                     switch (lastDirection)
                     {

@@ -24,22 +24,23 @@ namespace Text_based_Rpg
             enemies[0] = new EnemyClass(7, 7, 'G', "goblin", 1, 5, 1);
 
 
-            map.DrawMap();
+            map.MapUpdate();
             player.HUD();
-            enemies[0].HUD();
+            //enemies[0].HUD();
             player.Draw();
-            enemies[0].Draw();
+            //enemies[0].Draw();
             while(gameOver == false)
             {
-                map.DrawMap();
+                map.MapUpdate();
                 player.HUD();
                 enemies[0].HUD();
-
+            
                 enemies[0].Draw();
-
+            
                 player.Draw();
                 input.UserInput();
-
+                player.Update(input.playerDirection);
+            
                 // enabled player movement
                 player.Update(input.playerDirection);
                 // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies

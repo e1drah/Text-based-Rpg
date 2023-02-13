@@ -65,7 +65,7 @@ namespace Text_based_Rpg
         public void floorColour()
         {
 
-            char mapChar = mapCells[x,y];
+            char mapChar = stringMap[y][x];
             switch(mapChar)
             {
 
@@ -83,7 +83,7 @@ namespace Text_based_Rpg
             if (x >= Console.WindowWidth) x -= 1;
             if (y < 0) y = 0;
             if (y >= Console.WindowWidth) y -= 1;
-            if (mapCells[x, y] == 'W')
+            if (stringMap[y][x] == 'W')
             {
                 x = lastX;
                 y = lastY;

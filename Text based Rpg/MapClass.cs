@@ -12,29 +12,13 @@ namespace Text_based_Rpg
 
         public static class File { }
 
-        static char[,] map = new char[,] // dimensions defined by following data:
-        {
-            {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','F','W','F','W','F','W','F','W','F','W','F','W','F','W','F','W'},
-            {'W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W'},
-            {'W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W','W'},
+        public static string[] stringMap = System.IO.File.ReadAllLines("Map1.txt");
 
-        };
+        static char[][] map; // dimensions defined by following data:
+        
+
         //provides readabel data to objects that need it. may not be nessary currently
-        public char[,] mapCells = map; // dimensions defined by following data:
+        public char[][] mapCells = map; // dimensions defined by following data:
         //{
             //{'W','W','W','W','W','W','W','W','W'},
             //{'W','F','F','F','F','F','F','F','W'},
@@ -48,6 +32,11 @@ namespace Text_based_Rpg
 
         //};
         //draws map to the screen
+        public MapClass()
+        {
+            map = new char[100][];
+            //map[1] = 100;
+        }
         public void DrawMap()
         {
             Console.SetCursorPosition(0, 0);
@@ -55,16 +44,15 @@ namespace Text_based_Rpg
             {
                 for (int horizontal = 0; horizontal <= (map.GetLength(1) - 1); horizontal++)
                 {
-                    MapColour(vertical, horizontal);
+                    //MapColour(vertical, horizontal);
                 }
                 Console.WriteLine();
             }
         }
         // sets tile color based on what character is located there and there writes it to the screen
-        static void MapColour(int v, int h)
+        static void MapColour(char mapColour)
         {
-            char mapCell = map[v, h];
-            switch (mapCell)
+            switch (mapColour)
             {
                 case 'W':
                     Console.BackgroundColor = ConsoleColor.Gray;
@@ -79,13 +67,21 @@ namespace Text_based_Rpg
                 default:
                     break;
             }
-            Console.Write(mapCell);
+            Console.Write(mapColour);
             Console.ResetColor();
         }
-        static void MapUpdate()
+        public void MapUpdate()
         {
-            string stringMap = System.IO.File.ReadAllText("Map1.txt");
-            map = stringMap.ToCharArray();
+            Console.SetCursorPosition(0, 0);
+            for (int i = 0; i < stringMap.Length; i++)
+            {
+                for(int j = 0; j < stringMap[i].Length; j++)
+                {
+                    char m = stringMap[i][j];
+                    MapColour(m);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
