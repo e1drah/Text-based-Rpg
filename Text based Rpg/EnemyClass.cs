@@ -12,107 +12,87 @@ namespace Text_based_Rpg
         MapClass map = new MapClass();
 
         public int id;
-
+        
         private int n;
         public int lastDirection;
         Random random = new Random();  
-        public EnemyClass(int x, int y, char icon, string name, int id, int health, int attack)
+        public PlayerClass player;
+        public EnemyClass(char icon, string name, int id, int health, int attack)
         {
-            this.x = x;
-            this.y = y;
             this.icon = icon;
             this.name = name;
             this.id = id;
             this.attack = attack;
-
             hp = health;
         }
-
-        
-        // if enemy health is greater than 0 enemy will move else it moves the position to 0,0 and blanks out it's icon. will be changed once I find the time to implement lists
         public void Update(int playerX, int playerY)
         {
+            Random random = new Random();
             //HUD();
-            n += 1;
             int randomDirection = random.Next(0, 2);
-            System.IO.File.WriteAllText("EnemyDirectionLog.txt", "Enemy direction: " + randomDirection);
             bool hasEnemyMoved = false;
             lastX = x;
             lastY = y;
             if (hp > 0)
             {
-            while (hasEnemyMoved == false)
-            {
+                while (hasEnemyMoved == false)
+                {
 
-                if (randomDirection == 0)
-                {
-                    if (x < playerX)
+                    if (randomDirection == 0)
                     {
-                        x += 1;
-                        hasEnemyMoved = true;
-                        lastDirection = 4;
-                    }
-                    else if (x > playerX)
-                    {
-                        x -= 1;
-                        hasEnemyMoved = true;
-                        lastDirection = 3;
-                    }
-                    else if (x == playerX)
-                    {
-                        randomDirection = 1;
-                }
-                }
-                else if (randomDirection == 1)
-                {
-                    if (y < playerY)
-                    {
-                        y += 1;
-                        hasEnemyMoved = true;
-                        lastDirection = 2;
-                    }
-                    else if (y > playerY)
-                    {
-                        y -= 1;
-                        hasEnemyMoved = true;
-                        lastDirection = 1;
-                    }
-                    else if (y == playerY)
-                    {
-                        randomDirection = 0;
-                    }
-                }
-
-                if (x < 0) x = 0;
-                else if (x >= Console.WindowWidth) x -= 1;
-                else if (y < 0) y = 0;
-                else if (y >= Console.WindowWidth) y -= 1;
-                else if (stringMap[y][x] == 'W')
-                {
-                    switch (lastDirection)
-                    {
-                        case 1:
-                            y += 1;
-                            break;
-                        case 2:
+                        if (x < playerX)
+                        {
                             x += 1;
-                            break;
-                        case 3:
-                            y -= 1;
-                            break;
-                        case 4:
+                            hasEnemyMoved = true;
+                            lastDirection = 4;
+                        }
+                        else if (x > playerX)
+                        {
                             x -= 1;
-                            break;
+                            hasEnemyMoved = true;
+                            lastDirection = 3;
+                        }
+                        else if (x == playerX)
+                        {
+                            randomDirection = 1;
+                        }
+                    }
+                    else if (randomDirection == 1)
+                    {
+                        if (y < playerY)
+                        {
+                            y += 1;
+                            hasEnemyMoved = true;
+                            lastDirection = 2;
+                        }
+                        else if (y > playerY)
+                        {
+                            y -= 1;
+                            hasEnemyMoved = true;
+                            lastDirection = 1;
+                        }
+                        else if (y == playerY)
+                        {
+                            randomDirection = 0;
+                        }
+                    }
 
+                    if (x < 0) x = 0;
+                    else if (x >= Console.WindowWidth) x -= 1;
+                    else if (y < 0) y = 0;
+                    else if (y >= Console.WindowWidth) y -= 1;
+                    else if (stringMap[y][x] == 'W')
+                    {
+                        x = lastX;
+                        y = lastY;
+                    }
+                    if (Compare(player))
+                    {
+                        player.Hurt(attack);
                     }
                 }
-            }
-            }
-            else
-            {
-                x = 0;
-                y = 0;
             }
         }
     }
+    
 }

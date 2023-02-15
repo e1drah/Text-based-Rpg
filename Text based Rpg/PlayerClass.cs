@@ -8,6 +8,7 @@ namespace Text_based_Rpg
 {
     internal class PlayerClass:ObjectMangerClass
     {
+        List<EnemyClass> enemies = new List<EnemyClass>();
         public PlayerClass(int x, int y, char icon, string name, int health, int attack)
         {
             this.x = x; 
@@ -29,9 +30,14 @@ namespace Text_based_Rpg
             if (direction == 3) x -= 1;
             if (direction == 4) x += 1;
             BoundCheck();
+
             //floorColour(map.mapCells[x, y]);
             //Draw();
             //Console.ResetColor();
+        }
+        public void listUpdate(EnemyClass enemy)
+        {
+            enemies.Add(enemy);
         }
     }
 }

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnemyClass.cs" />
+    <Compile Include="GoblinClass.cs" />
     <Compile Include="ObjectMangerClass.cs" />
     <Compile Include="InputClass.cs" />
     <Compile Include="MapClass.cs" />

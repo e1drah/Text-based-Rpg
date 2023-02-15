@@ -14,47 +14,65 @@ namespace Text_based_Rpg
             InputClass input = new InputClass();
             PlayerClass player = new PlayerClass(1, 1, '@', "player", 7, 2);
             //player.x = 1;
-           // player.y = 1;
+            // player.y = 1;
             //player.playerCharacter = "@";
+            GoblinClass goblin = new GoblinClass(5, 5, 0, player);
+            GoblinClass goblin1 = new GoblinClass(5, 6, 1, player);
+            GoblinClass goblin2 = new GoblinClass(5, 4, 2, player);
 
+            List<EnemyClass> enemyList = new List<EnemyClass>();
+            enemyList.Add(goblin);
+            //enemyList.Add(goblin1);
+            //enemyList.Add(goblin2);
             bool gameOver = false;
 
             MapClass map = new MapClass();
-            EnemyClass[] enemies = new EnemyClass[1];
-            enemies[0] = new EnemyClass(7, 7, 'G', "goblin", 1, 5, 1);
+            //EnemyClass[] enemies = new EnemyClass[1];
+            //enemies[0] = new EnemyClass(7, 7, 'G', "goblin", 1, 5, 1);
 
 
             map.MapUpdate();
             player.HUD();
             //enemies[0].HUD();
             player.Draw();
+            foreach(EnemyClass enemy in enemyList)
+            {
+                enemy.Draw();
+            }
             //enemies[0].Draw();
             while(gameOver == false)
             {
                 map.MapUpdate();
                 player.HUD();
-                enemies[0].HUD();
-            
-                enemies[0].Draw();
-            
+                foreach (EnemyClass enemy in enemyList)
+                {
+                    enemy.HUD();
+                }
+
+                foreach (EnemyClass enemy in enemyList)
+                {
+                    enemy.Draw();
+                }
+
                 player.Draw();
                 input.UserInput();
                 player.Update(input.playerDirection);
-            
-                // enabled player movement
-                player.Update(input.playerDirection);
+                foreach (EnemyClass enemy in enemyList)
+                {
+                    enemy.Update(player.x, player.y);
+                }
                 // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies
-                if (player.Compare( enemies[0]))
-                {
-                    enemies[0].Hurt(player.attack);
-                }
+                //if (player.Compare( enemies[0]))
+                //{
+                //    enemies[0].Hurt(player.attack);
+                //}
                 // Updates enemies position will be updated to a for loop eventully to inculde all potintal enemies
-                enemies[0].Update(player.x, player.y);
+                //enemies[0].Update(player.x, player.y);
                 //
-                if (enemies[0].Compare(player))
-                {
-                    player.Hurt(enemies[0].attack);
-                }
+                //if (enemies[0].Compare(player))
+                //{
+                //    player.Hurt(enemies[0].attack);
+                //}
                 if (player.hp == 0)
                 {
                     gameOver = true;
