@@ -25,7 +25,7 @@ namespace Text_based_Rpg
             this.attack = attack;
             hp = health;
         }
-        public void Update(int playerX, int playerY)
+        public void Update()
         {
             Random random = new Random();
             //HUD();
@@ -40,38 +40,38 @@ namespace Text_based_Rpg
 
                     if (randomDirection == 0)
                     {
-                        if (x < playerX)
+                        if (x < player.x)
                         {
                             x += 1;
                             hasEnemyMoved = true;
                             lastDirection = 4;
                         }
-                        else if (x > playerX)
+                        else if (x > player.x)
                         {
                             x -= 1;
                             hasEnemyMoved = true;
                             lastDirection = 3;
                         }
-                        else if (x == playerX)
+                        else if (x == player.x)
                         {
                             randomDirection = 1;
                         }
                     }
                     else if (randomDirection == 1)
                     {
-                        if (y < playerY)
+                        if (y < player.y)
                         {
                             y += 1;
                             hasEnemyMoved = true;
                             lastDirection = 2;
                         }
-                        else if (y > playerY)
+                        else if (y > player.y)
                         {
                             y -= 1;
                             hasEnemyMoved = true;
                             lastDirection = 1;
                         }
-                        else if (y == playerY)
+                        else if (y == player.y)
                         {
                             randomDirection = 0;
                         }

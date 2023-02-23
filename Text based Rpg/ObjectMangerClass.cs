@@ -59,7 +59,7 @@ namespace Text_based_Rpg
         public void HUD()
         {
 
-            Console.WriteLine(name + " Health: " + hp);
+            Console.WriteLine(name + " Health: " + hp + " X: " + x + " Y: " + y);
         }
         //determins the tile the object is standing on and sets the back ground to match
         public void floorColour()
