@@ -25,6 +25,7 @@ namespace Text_based_Rpg
             GoblinClass goblin2 = new GoblinClass(19, 5, 2, player);
             enemyManager.goblins.Add(goblin2);
 
+            enemyManager.AddId();
             
             //enemyList.Add(goblin1);
             //enemyList.Add(goblin2);
@@ -49,10 +50,9 @@ namespace Text_based_Rpg
                 key.Update();
                 player.Draw();
                 input.UserInput();
+                enemyManager.Update();
                 player.Update(input.playerDirection);
 
-
-                enemyManager.Update();
                 
                 // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies
                 //if (player.Compare( enemies[0]))

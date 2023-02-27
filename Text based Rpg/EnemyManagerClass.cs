@@ -18,11 +18,22 @@ namespace Text_based_Rpg
             {
                 if (goblin.hp > 0)
                 {
-                   goblin.Update();
-
+                    goblin.Update();
+                    foreach (GoblinClass gobbo in goblins)
+                    {
+                        if (goblin.id != gobbo.id)
+                        {
+                            if (goblin.Compare(gobbo))
+                            {
+                                goblin.x = goblin.lastX;
+                                goblin.y = goblin.lastY;
+                            }
+                        }
+                    }
                 }
                 if (goblin.hp <= 0)
                 {
+                    goblin.showHud = false;
                     toBeRemoved.Add(goblin);
                 }
             }
@@ -46,7 +57,10 @@ namespace Text_based_Rpg
         {
             foreach (GoblinClass goblin in goblins)
             {
-                goblin.HUD();
+                if (goblin.showHud)
+                {
+                    goblin.HUD();
+                }
             }
         }
         public void Remove()
@@ -54,6 +68,15 @@ namespace Text_based_Rpg
             foreach(GoblinClass goblin in toBeRemoved)
             {
                 goblins.Remove(goblin);
+            }
+        }
+        public void AddId()
+        {
+            int id = 0;
+            foreach(GoblinClass goblin in goblins)
+            {
+                goblin.id = id;
+                id ++;
             }
         }
     }

@@ -45,6 +45,9 @@ namespace Text_based_Rpg
                 case "Sword":
                     player.attack += 3;
                     break;
+                case "HealthUp":
+                    //player.hp;
+                    break;
                 default:
                     break;
             }

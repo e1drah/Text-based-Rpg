@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace Text_based_Rpg
 {
-    public class FileNotFoundException : System.IO.IOException { }
+   
     internal class EnemyClass:ObjectMangerClass
     {
         MapClass map = new MapClass();
 
-        public int id;
+        public bool showHud = false;
         
-        private int n;
+        public int id;
         public int lastDirection;
+
         Random random = new Random();  
+
         public PlayerClass player;
-        public EnemyClass(char icon, string name, int id, int health, int attack)
+
+        public EnemyClass(char icon, string name, int health, int attack)
         {
             this.icon = icon;
             this.name = name;
-            this.id = id;
             this.attack = attack;
             hp = health;
         }
@@ -33,65 +35,63 @@ namespace Text_based_Rpg
             bool hasEnemyMoved = false;
             lastX = x;
             lastY = y;
-            if (hp > 0)
+
+            while (hasEnemyMoved == false)
             {
-                while (hasEnemyMoved == false)
+                if (randomDirection == 0)
                 {
-
-                    if (randomDirection == 0)
+                    if (x < player.x)
                     {
-                        if (x < player.x)
-                        {
-                            x += 1;
-                            hasEnemyMoved = true;
-                            lastDirection = 4;
-                        }
-                        else if (x > player.x)
-                        {
-                            x -= 1;
-                            hasEnemyMoved = true;
-                            lastDirection = 3;
-                        }
-                        else if (x == player.x)
-                        {
-                            randomDirection = 1;
-                        }
+                        x += 1;
+                        hasEnemyMoved = true;
+                        lastDirection = 4;
                     }
-                    else if (randomDirection == 1)
+                    else if (x > player.x)
                     {
-                        if (y < player.y)
-                        {
-                            y += 1;
-                            hasEnemyMoved = true;
-                            lastDirection = 2;
-                        }
-                        else if (y > player.y)
-                        {
-                            y -= 1;
-                            hasEnemyMoved = true;
-                            lastDirection = 1;
-                        }
-                        else if (y == player.y)
-                        {
-                            randomDirection = 0;
-                        }
+                        x -= 1;
+                        hasEnemyMoved = true;
+                        lastDirection = 3;
                     }
-
-                    if (x < 0) x = 0;
-                    else if (x >= Console.WindowWidth) x -= 1;
-                    else if (y < 0) y = 0;
-                    else if (y >= Console.WindowWidth) y -= 1;
-                    else if (stringMap[y][x] == 'W')
+                    else if (x == player.x)
                     {
-                        x = lastX;
-                        y = lastY;
-                    }
-                    if (Compare(player))
-                    {
-                        player.Hurt(attack);
+                        randomDirection = 1;
                     }
                 }
+                else if (randomDirection == 1)
+                {
+                    if (y < player.y)
+                    {
+                        y += 1;
+                        hasEnemyMoved = true;
+                        lastDirection = 2;
+                    }
+                    else if (y > player.y)
+                    {
+                        y -= 1;
+                        hasEnemyMoved = true;
+                        lastDirection = 1;
+                    }
+                    else if (y == player.y)
+                    {
+                        randomDirection = 0;
+                    }
+                }
+                if (x < 0) x = 0;
+                else if (x >= Console.WindowWidth) x -= 1;
+                else if (y < 0) y = 0;
+                else if (y >= Console.WindowWidth) y -= 1;
+                else if (stringMap[y][x] == 'W')
+                {
+                    x = lastX;
+                    y = lastY;
+                }
+                if (Compare(player))
+                {
+                    player.Hurt(attack);
+                }
             }
+
+            showHud = false;
         }
     }
     

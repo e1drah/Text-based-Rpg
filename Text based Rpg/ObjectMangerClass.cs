@@ -14,6 +14,7 @@ namespace Text_based_Rpg
         public int keyAmount;
         public string name;
 
+        public int colourId;
         public int hp;
         public int attack;
         public int x;

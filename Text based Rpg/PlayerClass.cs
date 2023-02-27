@@ -39,7 +39,8 @@ namespace Text_based_Rpg
                 if (Compare(enemy))
                 {
                     enemy.Hurt(attack);
-                    enemy.HUD();
+                    //enemy.HUD();
+                    enemy.showHud = true;
                 }
             }
             //floorColour(map.mapCells[x, y]);
