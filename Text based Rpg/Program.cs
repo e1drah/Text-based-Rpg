@@ -13,10 +13,11 @@ namespace Text_based_Rpg
         {
             EnemyManagerClass enemyManager = new EnemyManagerClass();
             InputClass input = new InputClass();
-            PlayerClass player = new PlayerClass(6, 3, '@', "player", 7, 2);
-            //player.x = 1;
-            // player.y = 1;
-            //player.playerCharacter = "@";
+            PlayerClass player = new PlayerClass(6, 3, '@', "player", 25, 2, enemyManager);
+            ItemClass key = new ItemClass(5, 5, "Key", player);
+            ItemClass Sword = new ItemClass(5, 5, "Sword", player);
+            ItemClass hpPotion = new ItemClass(5, 5, "Key", player);
+
             GoblinClass goblin = new GoblinClass(16, 3, 0, player);
             enemyManager.goblins.Add(goblin);
             GoblinClass goblin1 = new GoblinClass(22, 4, 1, player);
@@ -45,11 +46,13 @@ namespace Text_based_Rpg
                 player.HUD();
                 enemyManager.Hud();
                 enemyManager.Draw();
-
+                key.Update();
                 player.Draw();
                 input.UserInput();
                 player.Update(input.playerDirection);
-                //enemyManager.Update();
+
+
+                enemyManager.Update();
                 
                 // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies
                 //if (player.Compare( enemies[0]))

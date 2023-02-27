@@ -8,7 +8,7 @@ namespace Text_based_Rpg
 {
     internal class GoblinClass:EnemyClass
     {
-        public GoblinClass(int x, int y, int id ,PlayerClass player) : base('G', "Goblin",id, 10, 2)
+        public GoblinClass(int x, int y, int id ,PlayerClass player) : base('G', "Goblin",id, 5, 2)
         {
             this.x = x;
             this.y = y;

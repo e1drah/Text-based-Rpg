@@ -10,17 +10,23 @@ namespace Text_based_Rpg
     {
         public List<EnemyClass> enemies = new List<EnemyClass>();
         public List<GoblinClass> goblins = new List<GoblinClass>();
+        public List<GoblinClass> toBeRemoved = new List<GoblinClass>();
 
         public void Update()
         {
             foreach (GoblinClass goblin in goblins)
             {
-                if (goblin.hp != 0)
+                if (goblin.hp > 0)
                 {
                    goblin.Update();
 
                 }
+                if (goblin.hp <= 0)
+                {
+                    toBeRemoved.Add(goblin);
+                }
             }
+            Remove();
         }
         public void Draw()
         {
@@ -33,7 +39,7 @@ namespace Text_based_Rpg
         {
             foreach (GoblinClass goblin in goblins)
             {
-                player.enemies.Add(goblin);
+                player.listUpdate(goblin);
             }
         }
         public void Hud()
@@ -41,6 +47,13 @@ namespace Text_based_Rpg
             foreach (GoblinClass goblin in goblins)
             {
                 goblin.HUD();
+            }
+        }
+        public void Remove()
+        {
+            foreach(GoblinClass goblin in toBeRemoved)
+            {
+                goblins.Remove(goblin);
             }
         }
     }

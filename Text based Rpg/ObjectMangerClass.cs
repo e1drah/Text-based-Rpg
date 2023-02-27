@@ -10,7 +10,8 @@ namespace Text_based_Rpg
     internal class ObjectMangerClass:MapClass
     {
         public char icon;
-
+        public int healthPotionAmount;
+        public int keyAmount;
         public string name;
 
         public int hp;
@@ -44,6 +45,10 @@ namespace Text_based_Rpg
             hp = 0;
         }
     }
+    public void Heal()
+    {
+        hp += 5;
+    }
         // draws whatever object called it to it's x and y position
         public void Draw()
         {
@@ -59,7 +64,7 @@ namespace Text_based_Rpg
         public void HUD()
         {
 
-            Console.WriteLine(name + " Health: " + hp + " X: " + x + " Y: " + y);
+            Console.WriteLine(name + " Health: " + hp + " Attack: " + attack + " (H)eath potions: " + healthPotionAmount + " Keys: " + keyAmount + " X: " + x + " Y: " + y);
         }
         //determins the tile the object is standing on and sets the back ground to match
         public void floorColour()

@@ -46,6 +46,7 @@
     <Compile Include="EnemyClass.cs" />
     <Compile Include="EnemyManagerClass.cs" />
     <Compile Include="GoblinClass.cs" />
+    <Compile Include="ItemClass.cs" />
     <Compile Include="ObjectMangerClass.cs" />
     <Compile Include="InputClass.cs" />
     <Compile Include="MapClass.cs" />
