@@ -11,6 +11,7 @@ namespace Text_based_Rpg
 
         static void Main(string[] args)
         {
+            MapClass map = new MapClass();
             EnemyManagerClass enemyManager = new EnemyManagerClass();
             InputClass input = new InputClass();
             PlayerClass player = new PlayerClass(6, 3, '@', "player", 25, 2, enemyManager);
@@ -18,11 +19,11 @@ namespace Text_based_Rpg
             ItemClass Sword = new ItemClass(5, 5, "Sword", player);
             ItemClass hpPotion = new ItemClass(5, 5, "Key", player);
 
-            GoblinClass goblin = new GoblinClass(16, 3, 0, player);
+            GoblinClass goblin = new GoblinClass(16, 3, 0, player, map);
             enemyManager.goblins.Add(goblin);
-            GoblinClass goblin1 = new GoblinClass(22, 4, 1, player);
+            GoblinClass goblin1 = new GoblinClass(22, 4, 1, player, map);
             enemyManager.goblins.Add(goblin1);
-            GoblinClass goblin2 = new GoblinClass(19, 5, 2, player);
+            GoblinClass goblin2 = new GoblinClass(19, 5, 2, player, map);
             enemyManager.goblins.Add(goblin2);
 
             enemyManager.AddId();
@@ -31,7 +32,7 @@ namespace Text_based_Rpg
             //enemyList.Add(goblin2);
             bool gameOver = false;
 
-            MapClass map = new MapClass();
+            
             //EnemyClass[] enemies = new EnemyClass[1];
             //enemies[0] = new EnemyClass(7, 7, 'G', "goblin", 1, 5, 1);
 

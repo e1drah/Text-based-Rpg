@@ -83,5 +83,15 @@ namespace Text_based_Rpg
                 Console.WriteLine();
             }
         }
+        public bool BoundCheck(int x, int y)
+        {
+            if ((x < 0) || (x >= Console.WindowWidth) || (y < 0) || (y >= Console.WindowHeight) || (stringMap[y][x] == 'W')){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

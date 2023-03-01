@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Text_based_Rpg
 {
 
-    internal class ObjectMangerClass:MapClass
+    internal class ObjectMangerClass
     {
+        public MapClass map;
         public char icon;
         public int healthPotionAmount;
         public int keyAmount;
@@ -58,20 +59,17 @@ namespace Text_based_Rpg
             Console.SetCursorPosition(x, y);
             Console.Write(icon);
             Console.ResetColor();
-
-
         }
         //prints the objects name and health to the screen
         public void HUD()
         {
-
             Console.WriteLine(name + " Health: " + hp + " Attack: " + attack + " (H)eath potions: " + healthPotionAmount + " Keys: " + keyAmount + " X: " + x + " Y: " + y);
         }
         //determins the tile the object is standing on and sets the back ground to match
         public void floorColour()
         {
 
-            char mapChar = stringMap[y][x];
+            char mapChar = map.stringMap[y][x];
             switch(mapChar)
             {
 
@@ -85,18 +83,16 @@ namespace Text_based_Rpg
         }
         public void BoundCheck()
         {
-            if (x < 0) x = 0;
-            if (x >= Console.WindowWidth) x -= 1;
-            if (y < 0) y = 0;
-            if (y >= Console.WindowWidth) y -= 1;
-            if (stringMap[y][x] == 'W')
+            ResetPosition();
+        }
+        public void ResetPosition()
+        {
+            if (map.BoundCheck(x,y))
             {
                 x = lastX;
                 y = lastY;
             }
-
         }
-
     }
 }
 

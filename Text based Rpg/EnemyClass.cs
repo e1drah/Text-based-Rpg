@@ -9,7 +9,6 @@ namespace Text_based_Rpg
    
     internal class EnemyClass:ObjectMangerClass
     {
-        MapClass map = new MapClass();
 
         public bool showHud = false;
         
@@ -20,7 +19,7 @@ namespace Text_based_Rpg
 
         public PlayerClass player;
 
-        public EnemyClass(char icon, string name, int health, int attack)
+        public EnemyClass(char icon, string name, int health, int attack,)
         {
             this.icon = icon;
             this.name = name;
@@ -75,19 +74,6 @@ namespace Text_based_Rpg
                     {
                         randomDirection = 0;
                     }
-                }
-                if (x < 0) x = 0;
-                else if (x >= Console.WindowWidth) x -= 1;
-                else if (y < 0) y = 0;
-                else if (y >= Console.WindowWidth) y -= 1;
-                else if (stringMap[y][x] == 'W')
-                {
-                    x = lastX;
-                    y = lastY;
-                }
-                if (Compare(player))
-                {
-                    player.Hurt(attack);
                 }
             }
 
