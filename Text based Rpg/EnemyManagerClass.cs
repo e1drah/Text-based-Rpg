@@ -29,7 +29,13 @@ namespace Text_based_Rpg
                                 goblin.y = goblin.lastY;
                             }
                         }
+                        
                     }
+                    //if (goblin.Compare(goblin.player))
+                    //{
+                    //    goblin.x = goblin.lastX;
+                    //    goblin.y = goblin.lastY;
+                    //}
                 }
                 if (goblin.hp <= 0)
                 {

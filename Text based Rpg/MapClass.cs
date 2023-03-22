@@ -12,7 +12,7 @@ namespace Text_based_Rpg
 
         public static class File { }
 
-        public static string[] stringMap = System.IO.File.ReadAllLines("Map1.txt");
+        public static string[] stringMap = System.IO.File.ReadAllLines("Map2.txt");
 
         static char[][] map; // dimensions defined by following data:
         
@@ -85,13 +85,19 @@ namespace Text_based_Rpg
         }
         public bool BoundCheck(int x, int y)
         {
-            if ((x < 0) || (x >= Console.WindowWidth) || (y < 0) || (y >= Console.WindowHeight) || (stringMap[y][x] == 'W')){
+            if ((x < 0) || (x >= Console.WindowWidth) || (y < 0) || (y >= Console.WindowHeight) || (stringMap[y][x] == 'W'))
+            {
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+        public char GetChar(int x, int y)
+        {
+            char mapChar = stringMap[y][x];
+            return mapChar;
         }
     }
 }

@@ -65,6 +65,9 @@ namespace Text_based_Rpg
                 case "Sword":
                     icon = 'S';
                     break;
+                case "HealthUp":
+                    icon = 'H';
+                    break;
                 default:
                     break;
             }

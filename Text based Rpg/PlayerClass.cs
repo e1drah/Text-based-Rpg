@@ -12,7 +12,7 @@ namespace Text_based_Rpg
         public List<EnemyClass> enemies = new List<EnemyClass>();
 
         public EnemyManagerClass enemyManager;
-        public PlayerClass(int x, int y, char icon, string name, int health, int attack, EnemyManagerClass enemyManager)
+        public PlayerClass(int x, int y, char icon, string name, int health, int attack, EnemyManagerClass enemyManager, MapClass map)
         {
             this.x = x; 
             this.y = y; 
@@ -20,7 +20,9 @@ namespace Text_based_Rpg
             this.name = name;
             this.attack = attack;
             this.enemyManager = enemyManager;
+            this.map = map;
             hp = health;
+            maxHP = hp;
         }
         // moves the player based on key presses
         public void Update(int Input)
@@ -35,7 +37,6 @@ namespace Text_based_Rpg
             BoundCheck();
             foreach (EnemyClass enemy in enemyManager.goblins)
             {
-
                 if (Compare(enemy))
                 {
                     enemy.Hurt(attack);

@@ -17,6 +17,7 @@ namespace Text_based_Rpg
 
         public int colourId;
         public int hp;
+        public int maxHP;
         public int attack;
         public int x;
         public int y;
@@ -54,7 +55,7 @@ namespace Text_based_Rpg
         // draws whatever object called it to it's x and y position
         public void Draw()
         {
-            floorColour();
+            //floorColour();
             Console.CursorVisible = false;
             Console.SetCursorPosition(x, y);
             Console.Write(icon);
@@ -63,13 +64,20 @@ namespace Text_based_Rpg
         //prints the objects name and health to the screen
         public void HUD()
         {
-            Console.WriteLine(name + " Health: " + hp + " Attack: " + attack + " (H)eath potions: " + healthPotionAmount + " Keys: " + keyAmount + " X: " + x + " Y: " + y);
+            if (name == "player")
+            {
+                Console.WriteLine(name + " Health: " + hp +"/" + maxHP + " Attack: " + attack + " (H)eath potions: " + healthPotionAmount + " Keys: " + keyAmount + " X: " + x + " Y: " + y);
+            }
+            else
+            {
+                Console.WriteLine(name + " Health: " + hp + " Attack: " + attack + " X: " + x + " Y: " + y);
+            }
         }
         //determins the tile the object is standing on and sets the back ground to match
         public void floorColour()
         {
 
-            char mapChar = map.stringMap[y][x];
+            char mapChar = map.GetChar(x, y);
             switch(mapChar)
             {
 
@@ -78,16 +86,20 @@ namespace Text_based_Rpg
                     break;
                 case 'W':
                     Console.BackgroundColor = ConsoleColor.Gray;
-                    break ;
+                    break;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    break;
             }
         }
         public void BoundCheck()
         {
+            map.BoundCheck(x, y);
             ResetPosition();
         }
         public void ResetPosition()
         {
-            if (map.BoundCheck(x,y))
+            if (map.BoundCheck(x, y))
             {
                 x = lastX;
                 y = lastY;

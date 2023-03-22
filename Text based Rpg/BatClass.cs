@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Text_based_Rpg
 {
-    internal class GoblinClass:EnemyClass
+    internal class BatClass:EnemyClass
     {
-        public GoblinClass(int x, int y, int id ,PlayerClass player, MapClass map) : base('G', "Goblin", 5, 2, map)
+        public BatClass(int x, int y, int id, PlayerClass player, MapClass map) : base('b', "Bat", 3, 1, map)
         {
             this.map = map;
             this.x = x;
             this.y = y;
             this.player = player;
         }
-       
     }
 }
