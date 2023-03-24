@@ -9,79 +9,78 @@ namespace Text_based_Rpg
     internal class EnemyManagerClass
     {
         public List<EnemyClass> enemies = new List<EnemyClass>();
-        public List<GoblinClass> goblins = new List<GoblinClass>();
-        public List<GoblinClass> toBeRemoved = new List<GoblinClass>();
+        public List<EnemyClass> toBeRemoved = new List<EnemyClass>();
 
         public void Update()
         {
-            foreach (GoblinClass goblin in goblins)
+            foreach (EnemyClass enemy in enemies)
             {
-                if (goblin.hp > 0)
+                if (enemy.hp > 0)
                 {
-                    goblin.Update();
-                    foreach (GoblinClass gobbo in goblins)
+                    enemy.Update();
+                    foreach (EnemyClass emmy in enemies)
                     {
-                        if (goblin.id != gobbo.id)
+                        if (enemy.id != emmy.id)
                         {
-                            if (goblin.Compare(gobbo))
+                            if (enemy.Compare(emmy))
                             {
-                                goblin.x = goblin.lastX;
-                                goblin.y = goblin.lastY;
+                                enemy.x = enemy.lastX;
+                                enemy.y = enemy.lastY;
                             }
                         }
                         
                     }
-                    //if (goblin.Compare(goblin.player))
+                    //if (enemy.Compare(enemy.player))
                     //{
-                    //    goblin.x = goblin.lastX;
-                    //    goblin.y = goblin.lastY;
+                    //    enemy.x = enemy.lastX;
+                    //    enemy.y = enemy.lastY;
                     //}
                 }
-                if (goblin.hp <= 0)
+                if (enemy.hp <= 0)
                 {
-                    goblin.showHud = false;
-                    toBeRemoved.Add(goblin);
+                    enemy.showHud = false;
+                    toBeRemoved.Add(enemy);
                 }
             }
             Remove();
         }
         public void Draw()
         {
-            foreach (GoblinClass goblin in goblins)
+            foreach (EnemyClass enemy in enemies)
             {
-                goblin.Draw();
+                enemy.Draw();
             }
         }
         public void Playerlist(PlayerClass player)
         {
-            foreach (GoblinClass goblin in goblins)
+            foreach (EnemyClass enemy in enemies)
             {
-                player.listUpdate(goblin);
+                player.listUpdate(enemy);
             }
         }
         public void Hud()
         {
-            foreach (GoblinClass goblin in goblins)
+            foreach (EnemyClass enemy in enemies)
             {
-                if (goblin.showHud)
+                if (enemy.showHud)
                 {
-                    goblin.HUD();
+                    enemy.HUD();
                 }
             }
         }
         public void Remove()
         {
-            foreach(GoblinClass goblin in toBeRemoved)
+            foreach(EnemyClass enemy in toBeRemoved)
             {
-                goblins.Remove(goblin);
+                enemies.Remove(enemy);
             }
         }
         public void AddId()
         {
             int id = 0;
-            foreach(GoblinClass goblin in goblins)
+            foreach(EnemyClass enemy in enemies)
             {
-                goblin.id = id;
+                enemy.id = id;
                 id ++;
             }
         }

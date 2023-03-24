@@ -11,54 +11,8 @@ namespace Text_based_Rpg
 
         static void Main(string[] args)
         {
-            MapClass map = new MapClass();
-            EnemyManagerClass enemyManager = new EnemyManagerClass();
-            InputClass input = new InputClass();
-            PlayerClass player = new PlayerClass(6, 3, '@', "player", 25, 2, enemyManager, map);
-            ItemClass key = new ItemClass(5, 5, "Key", player);
-            ItemClass Sword = new ItemClass(5, 5, "Sword", player);
-            ItemClass hpPotion = new ItemClass(5, 5, "Key", player);
-
-            GoblinClass goblin = new GoblinClass(16, 3, 0, player, map);
-            enemyManager.goblins.Add(goblin);
-            GoblinClass goblin1 = new GoblinClass(22, 4, 1, player, map);
-            enemyManager.goblins.Add(goblin1);
-            GoblinClass goblin2 = new GoblinClass(19, 5, 2, player, map);
-            enemyManager.goblins.Add(goblin2);
-
-            enemyManager.AddId();
-            bool gameOver = false;
-
-            while(gameOver == false)
-            {
-                map.MapUpdate();
-                player.HUD();
-                enemyManager.Hud();
-                enemyManager.Draw();
-                key.Update();
-                player.Draw();
-                input.UserInput();
-                enemyManager.Update();
-                player.Update(input.playerDirection);
-
-                
-                // compares player position vs enemies position will be updated to a for loop eventully to cheack all potintal enemies
-                //if (player.Compare( enemies[0]))
-                //{
-                //    enemies[0].Hurt(player.attack);
-                //}
-                // Updates enemies position will be updated to a for loop eventully to inculde all potintal enemies
-                //enemies[0].Update(player.x, player.y);
-                //
-                //if (enemies[0].Compare(player))
-                //{
-                //    player.Hurt(enemies[0].attack);
-                //}
-                if (player.hp == 0)
-                {
-                    gameOver = true;
-                }
-            }
+            Game game = new Game();
+            game.RunGame();
             Console.ReadKey();
             
         }

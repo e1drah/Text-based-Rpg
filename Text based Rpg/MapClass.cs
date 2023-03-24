@@ -12,7 +12,7 @@ namespace Text_based_Rpg
 
         public static class File { }
 
-        public static string[] stringMap = System.IO.File.ReadAllLines("Map2.txt");
+        public static string[] stringMap;
 
         static char[][] map; // dimensions defined by following data:
         
@@ -98,6 +98,26 @@ namespace Text_based_Rpg
         {
             char mapChar = stringMap[y][x];
             return mapChar;
+        }
+        public void ChangeMap(int Level)
+        {
+            switch (Level)
+            {
+                case 0:
+                    break;
+
+                case 1:
+                    stringMap = System.IO.File.ReadAllLines("Map1.txt");
+                    break;
+
+                case 2:
+                    stringMap = System.IO.File.ReadAllLines("Map2.txt");
+                    break;
+
+                default:
+                    break;
+
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Text_based_Rpg
             if (Input == 3) x -= 1;
             if (Input == 4) x += 1;
             BoundCheck();
-            foreach (EnemyClass enemy in enemyManager.goblins)
+            foreach (EnemyClass enemy in enemyManager.enemies)
             {
                 if (Compare(enemy))
                 {
